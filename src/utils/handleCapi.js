@@ -27,7 +27,7 @@ export default function handleCapi(nameState, phoneState, fbc) {
                     fn: hashedName,
                     ph: hashedPhone,
                     fbc: `fb.1.${Date.now()}.${fbc}`,
-                    fbp: fbp || null,
+                    fbp: null,
                 },
             },
         ],
