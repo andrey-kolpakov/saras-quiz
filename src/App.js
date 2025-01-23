@@ -21,6 +21,7 @@ import neznayu from './images/materials/ne-znayu.JPG'
 import plastic from './images/materials/plastic.JPG'
 import shpon from './images/materials/shpon.JPG'
 
+
 const quizSteps = [
     {
         question: 'В каком стиле вы хотите кухню?',
@@ -77,6 +78,11 @@ const quizSteps = [
 function App() {
     const [currentStep, setCurrentStep] = useState(0)
     const [answers, setAnswers] = useState([])
+    const [userAgent, setUserAgent] = useState('')
+    useEffect(() => {
+        setUserAgent(navigator.userAgent)
+    }, [])
+    // console.log(userAgent)
 
     const handleOptionClick = (option) => {
         const updatedAnswers = [...answers]
@@ -91,19 +97,9 @@ function App() {
         setCurrentStep(currentStep + 1)
     }
 
-    const [queryState, setQuaryState] = useState('')
-
-    useEffect(() => {
-        // setQuaryState(queryString.parse(this.props.location.search))
-        // console.log(this)
-    }, [])
-
     const customURL = window.location.href
     const params = new URLSearchParams(customURL.split('?')[1])
     const fbclid = params.get('fbclid')
-    console.log(fbclid)
-
-    // console.log(params)
 
     return (
         <BrowserRouter>
@@ -151,9 +147,10 @@ function App() {
                             </div>
                         </>
                     ) : (
-                        <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid}/>
+                        <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
                     )}
                 </div>
+                {/* <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} /> */}
             </div>
         </BrowserRouter>
     )

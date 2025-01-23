@@ -1,40 +1,45 @@
 //Form.js
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 
 import handleAmoWebhook from '../utils/handleAmoWebHook'
 import handleCapi from '../utils/handleCapi'
 
-import { withRouter } from 'react-router-dom'
-import queryString from 'query-string'
+import './form.scss'
 
-function Form({ answers, fbc }) {
+import { InputMask } from '@react-input/mask'
+
+function Form({ answers, fbc, browserName }) {
     const [phoneNumber, setPhoneNumber] = useState('')
     const [name, setName] = useState('')
 
-    
+    const [isSubmitted, setIsSubmitted] = useState(false)
 
     const handleFormSubmit = (e) => {
         e.preventDefault()
 
         handleAmoWebhook(name, phoneNumber, answers)
 
-        // console.log(answers)
-
-        console.log()
-        alert('Спасибо за прохождение опроса!')
-
-        handleCapi(name, phoneNumber, fbc)
-
+        handleCapi(name, phoneNumber, fbc, browserName)
         setPhoneNumber('')
         setName('')
+
+        setIsSubmitted(true)
     }
 
     return (
-        <form onSubmit={handleFormSubmit} className="form-container">
+        <form onSubmit={handleFormSubmit} className={`form-container ${isSubmitted ? 'form-container--submitted' : ''}`}>
+            <div className="submited-overlay">
+
+                <div className="submited-overlay__text">Мы получили вашу заявку и скоро свяжемся!</div>
+                
+                <div className="button-back-to-form" onClick={(evt) => setIsSubmitted(false)} >
+                    Я хочу отправить форму заново
+                </div>
+            </div>
             <h3>Спасибо за ответы! Получите результаты расчета, оставив контакты</h3>
             <br />
-            <input type="tel" value={phoneNumber} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="Введите номер телефона" required />
+            <InputMask mask="+7 (___) ___-__-__" replacement={{ _: /\d/ }} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="+7 (777) 777-55-11" />
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ваше имя" required />
             <button type="submit">Отправить</button>
             <div className="tp-xxs form-link">
