@@ -21,6 +21,9 @@ import neznayu from './images/materials/ne-znayu.JPG'
 import plastic from './images/materials/plastic.JPG'
 import shpon from './images/materials/shpon.JPG'
 
+import CookieConsent from './components/CookieConsent'
+
+import { store } from './redux/store'
 
 const quizSteps = [
     {
@@ -117,6 +120,7 @@ function App() {
 
                     {currentStep < quizSteps.length ? (
                         <>
+                            {/* <CookieConsent /> */}
                             <div className="question-container">
                                 <div className="question-container__number">{currentStep + 1}</div>
                                 <h3>{quizSteps[currentStep].question}</h3>
@@ -142,6 +146,8 @@ function App() {
                                 ))}
                             </div>
 
+                            
+
                             <div onClick={handleNextClick} className={`next-button ${!answers[currentStep] ? 'next-button--inactive' : ''}`}>
                                 Дальше
                             </div>
@@ -150,7 +156,6 @@ function App() {
                         <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
                     )}
                 </div>
-                {/* <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} /> */}
             </div>
         </BrowserRouter>
     )

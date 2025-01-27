@@ -27,13 +27,15 @@
         gap: 0.5rem;
     }
 
-    .option-button {
-        padding: 0.5rem;
+    .option-text {
+        padding: 0.5rem !important;
     }
 
     .option-image {
         width: 5rem;
         height: 5rem;
+
+        align-self: flex-start;
     }
 
     input[type='tel'] {
@@ -48,6 +50,14 @@
 
     .quiz-container > div {
         font-size: 1rem;
+    }
+
+    .question-container{
+        align-items: flex-start !important;
+    }
+
+    .option-button{
+        justify-content: flex-start !important;
     }
 }
 /* Стили на rem */
@@ -133,4 +143,8 @@
   background-color: $gold;
 }
 
-
+.cookie-container-in-text{
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+}
