@@ -134,7 +134,7 @@ function App() {
                                         </div>
                                     )}
                                 </div>
-                                
+
                                 <Suspense fallback={<div className="loading">Загрузка...</div>}>
                                     <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" />
                                 </Suspense>
@@ -146,7 +146,9 @@ function App() {
                                             className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
                                             onClick={() => handleOptionClick(option)}
                                         >
-                                            <img src={option.image} alt={option.text} className="option-image" />
+                                            <Suspense fallback={<div className="option-image"></div>}>
+                                                <img src={option.image} alt={option.text} className="option-image" />
+                                            </Suspense>
 
                                             <div className="option-text">{option.text}</div>
                                         </div>
