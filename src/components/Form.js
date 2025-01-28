@@ -38,7 +38,7 @@ function Form({ answers, fbc, browserName }) {
             </div>
             <h3>Спасибо за ответы! Получите результаты расчета, оставив контакты</h3>
             <br />
-            <InputMask mask="+7 (___) ___-__-__" replacement={{ _: /\d/ }} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="+7 (777) 777-55-11" />
+            <InputMask mask="+7 (___) ___-__-__" replacement={{ _: /\d/ }} onChange={(e) => setPhoneNumber(e.target.value)} placeholder="+7 (777) 777-55-11" value={phoneNumber}/>
             <input type="text" value={name} onChange={(e) => setName(e.target.value)} placeholder="Ваше имя" required />
             <button type="submit">Отправить</button>
 

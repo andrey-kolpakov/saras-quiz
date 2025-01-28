@@ -12,10 +12,6 @@ export default function handleCapi(nameState, phoneState, fbc, browserName) {
         .find((row) => row.startsWith('_fbp'))
         ?.split('=')[1]
 
-    // console.log(fbp)
-
-    // console.log(CAPIToken)
-
     // CAPI META
     const hashedName = CryptoJS.SHA256(nameState.toLowerCase().trim()).toString()
     const hashedPhone = CryptoJS.SHA256(phoneState.replace(/\D/g, '')).toString() // Удаляем все нецифровые символы для телефона

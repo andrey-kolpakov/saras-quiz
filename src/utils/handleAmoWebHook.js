@@ -4,10 +4,10 @@ export default function handleAmoWebhook(name, phone, text) {
     const payload = {
         name: name,
         phone: phone,
-        comments: text
+        comments: text,
     }
 
-    console.log(payload)
+    // console.log(payload)
 
     // axios
     //     .post('https://saras-amo.netlify.app/.netlify/functions/check', payload, {
@@ -18,10 +18,8 @@ export default function handleAmoWebhook(name, phone, text) {
     //     .then((response) => {
     //         console.log('Успешная отправка данных на вебхук:', response.data)
 
-            
     //     })
     //     .catch((error) => {
     //         console.error('Ошибка при отправке данных на вебхук:', error)
     //     })
-        
 }

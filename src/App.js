@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, Suspense } from 'react'
 import { useLocation } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 // import { Link } from 'react-router'
@@ -109,17 +109,18 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                <div className="quiz-container">
-                    <div className="progress-bar">
-                        <p className="progress-bar__number">Шаг {currentStep + 1}</p>
+                <Suspense fallback={<div className="loading">Загрузка...</div>}>
+                    <div className="quiz-container">
+                        <div className="progress-bar">
+                            <p className="progress-bar__number">Шаг {currentStep + 1}</p>
 
-                        <div className="progress-bar__quiz-steps">
-                            {quizSteps.map((_, index) => (
-                                <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
-                            ))}
-                        </div>
+                            <div className="progress-bar__quiz-steps">
+                                {quizSteps.map((_, index) => (
+                                    <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
+                                ))}
+                            </div>
 
-                        {/* <div className='progress-bar__info'>
+                            {/* <div className='progress-bar__info'>
                             <p className="progress-bar__number">Шаг {currentStep + 1}</p>
 
                             <div className="progress-bar__quiz-steps">
@@ -130,44 +131,45 @@ function App() {
                         </div>
 
                         <img src={Logo} alt="Logo" width={150} /> */}
+                        </div>
+
+                        {currentStep < quizSteps.length ? (
+                            <>
+                                {/* <CookieConsent /> */}
+                                <div className="question-container">
+                                    <div className="question-container__number">{currentStep + 1}</div>
+                                    <h3>{quizSteps[currentStep].question}</h3>
+
+                                    {currentStep > 0 && (
+                                        <div onClick={() => setCurrentStep(currentStep - 1)} className="back-button">
+                                            Назад
+                                        </div>
+                                    )}
+                                </div>
+                                <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" />
+                                <div className="options-container">
+                                    {quizSteps[currentStep].options.map((option, index) => (
+                                        <div
+                                            key={index}
+                                            className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
+                                            onClick={() => handleOptionClick(option)}
+                                        >
+                                            <img src={option.image} alt={option.text} className="option-image" />
+
+                                            <div className="option-text">{option.text}</div>
+                                        </div>
+                                    ))}
+                                </div>
+
+                                <div onClick={handleNextClick} className={`next-button ${!answers[currentStep] ? 'next-button--inactive' : ''}`}>
+                                    Дальше
+                                </div>
+                            </>
+                        ) : (
+                            <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
+                        )}
                     </div>
-
-                    {currentStep < quizSteps.length ? (
-                        <>
-                            {/* <CookieConsent /> */}
-                            <div className="question-container">
-                                <div className="question-container__number">{currentStep + 1}</div>
-                                <h3>{quizSteps[currentStep].question}</h3>
-
-                                {currentStep > 0 && (
-                                    <div onClick={() => setCurrentStep(currentStep - 1)} className="back-button">
-                                        Назад
-                                    </div>
-                                )}
-                            </div>
-                            <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" />
-                            <div className="options-container">
-                                {quizSteps[currentStep].options.map((option, index) => (
-                                    <div
-                                        key={index}
-                                        className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
-                                        onClick={() => handleOptionClick(option)}
-                                    >
-                                        <img src={option.image} alt={option.text} className="option-image" />
-
-                                        <div className="option-text">{option.text}</div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            <div onClick={handleNextClick} className={`next-button ${!answers[currentStep] ? 'next-button--inactive' : ''}`}>
-                                Дальше
-                            </div>
-                        </>
-                    ) : (
-                        <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
-                    )}
-                </div>
+                </Suspense>
             </div>
         </BrowserRouter>
     )
