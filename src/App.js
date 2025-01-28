@@ -119,18 +119,6 @@ function App() {
                                     <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
                                 ))}
                             </div>
-
-                            {/* <div className='progress-bar__info'>
-                            <p className="progress-bar__number">Шаг {currentStep + 1}</p>
-
-                            <div className="progress-bar__quiz-steps">
-                                {quizSteps.map((_, index) => (
-                                    <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
-                                ))}
-                            </div>
-                        </div>
-
-                        <img src={Logo} alt="Logo" width={150} /> */}
                         </div>
 
                         {currentStep < quizSteps.length ? (
@@ -146,7 +134,11 @@ function App() {
                                         </div>
                                     )}
                                 </div>
-                                <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" />
+                                
+                                <Suspense fallback={<div className="loading">Загрузка...</div>}>
+                                    <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" />
+                                </Suspense>
+
                                 <div className="options-container">
                                     {quizSteps[currentStep].options.map((option, index) => (
                                         <div
