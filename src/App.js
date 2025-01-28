@@ -110,66 +110,72 @@ function App() {
         <BrowserRouter>
             <div className="App">
                 {/* <Suspense fallback={<div className="loading">Загрузка...</div>}> */}
-                    <div className="quiz-container">
-                        <div className="progress-bar">
-                            <p className="progress-bar__number">Шаг {currentStep + 1}</p>
+                <div className="quiz-container">
+                    <div className="progress-bar">
+                        <p className="progress-bar__number">Шаг {currentStep + 1}</p>
 
-                            <div className="progress-bar__quiz-steps">
-                                {quizSteps.map((_, index) => (
-                                    <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
+                        <div className="progress-bar__quiz-steps">
+                            {quizSteps.map((_, index) => (
+                                <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {currentStep < quizSteps.length ? (
+                        <>
+                            {/* <CookieConsent /> */}
+                            <div className="question-container">
+                                <div className="question-container__number">{currentStep + 1}</div>
+                                <h3>{quizSteps[currentStep].question}</h3>
+
+                                {currentStep > 0 && (
+                                    <div onClick={() => setCurrentStep(currentStep - 1)} className="back-button">
+                                        Назад
+                                    </div>
+                                )}
+                            </div>
+
+                            {/* <Suspense fallback={<div className="question-image" style={{ width: 600, height: 300 }}></div>}>
+                                <img
+                                    src={quizSteps[currentStep].image}
+                                    alt="Вопрос"
+                                    className="question-image"
+                                    loading={currentStep === 0 ? 'eager' : 'lazy'}
+                                    width={600}
+                                    height={300}
+                                />
+                            </Suspense> */}
+
+                            {!quizSteps[currentStep].image ? (
+                                <div className="question-image" style={{ width: 600, height: 300 }}></div>
+                            ) : (
+                                <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" loading="eager" width="600" height="300" />
+                            )}
+
+                            <div className="options-container">
+                                {quizSteps[currentStep].options.map((option, index) => (
+                                    <div
+                                        key={index}
+                                        className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
+                                        onClick={() => handleOptionClick(option)}
+                                    >
+                                        <Suspense fallback={<div className="option-image"></div>}>
+                                            <img src={option.image} alt={option.text} className="option-image" />
+                                        </Suspense>
+
+                                        <div className="option-text">{option.text}</div>
+                                    </div>
                                 ))}
                             </div>
-                        </div>
 
-                        {currentStep < quizSteps.length ? (
-                            <>
-                                {/* <CookieConsent /> */}
-                                <div className="question-container">
-                                    <div className="question-container__number">{currentStep + 1}</div>
-                                    <h3>{quizSteps[currentStep].question}</h3>
-
-                                    {currentStep > 0 && (
-                                        <div onClick={() => setCurrentStep(currentStep - 1)} className="back-button">
-                                            Назад
-                                        </div>
-                                    )}
-                                </div>
-
-                                <Suspense fallback={<div className="question-image" style={{width: 600, height: 300}}></div>}>
-                                    <img
-                                        src={quizSteps[currentStep].image}
-                                        alt="Вопрос"
-                                        className="question-image"
-                                        loading={currentStep === 0 ? 'eager' : 'lazy'}
-                                        width={600}
-                                        height={300}
-                                    />
-                                </Suspense>
-
-                                <div className="options-container">
-                                    {quizSteps[currentStep].options.map((option, index) => (
-                                        <div
-                                            key={index}
-                                            className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
-                                            onClick={() => handleOptionClick(option)}
-                                        >
-                                            <Suspense fallback={<div className="option-image"></div>}>
-                                                <img src={option.image} alt={option.text} className="option-image" />
-                                            </Suspense>
-
-                                            <div className="option-text">{option.text}</div>
-                                        </div>
-                                    ))}
-                                </div>
-
-                                <div onClick={handleNextClick} className={`next-button ${!answers[currentStep] ? 'next-button--inactive' : ''}`}>
-                                    Дальше
-                                </div>
-                            </>
-                        ) : (
-                            <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
-                        )}
-                    </div>
+                            <div onClick={handleNextClick} className={`next-button ${!answers[currentStep] ? 'next-button--inactive' : ''}`}>
+                                Дальше
+                            </div>
+                        </>
+                    ) : (
+                        <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
+                    )}
+                </div>
                 {/* </Suspense> */}
             </div>
         </BrowserRouter>
