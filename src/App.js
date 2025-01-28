@@ -109,7 +109,6 @@ function App() {
     return (
         <BrowserRouter>
             <div className="App">
-                {/* <Suspense fallback={<div className="loading">Загрузка...</div>}> */}
                 <div className="quiz-container">
                     <div className="progress-bar">
                         <p className="progress-bar__number">Шаг {currentStep + 1}</p>
@@ -135,22 +134,13 @@ function App() {
                                 )}
                             </div>
 
-                            {/* <Suspense fallback={<div className="question-image" style={{ width: 600, height: 300 }}></div>}>
-                                <img
-                                    src={quizSteps[currentStep].image}
-                                    alt="Вопрос"
-                                    className="question-image"
-                                    loading={currentStep === 0 ? 'eager' : 'lazy'}
-                                    width={600}
-                                    height={300}
-                                />
-                            </Suspense> */}
-
-                            {!quizSteps[currentStep].image ? (
+                            {/* {!quizSteps[currentStep].image ? (
                                 <div className="question-image" style={{ width: 600, height: 300 }}></div>
                             ) : (
                                 <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" loading="eager" width="600" height="300" />
-                            )}
+                            )} */}
+
+                            <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" width="600" height="300" />
 
                             <div className="options-container">
                                 {quizSteps[currentStep].options.map((option, index) => (
@@ -159,9 +149,7 @@ function App() {
                                         className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
                                         onClick={() => handleOptionClick(option)}
                                     >
-                                        {/* <Suspense fallback={<div className="option-image"></div>}> */}
-                                            <img src={option.image} alt={option.text} className="option-image" />
-                                        {/* </Suspense> */}
+                                        <img src={option.image} alt={option.text} className="option-image" />
 
                                         <div className="option-text">{option.text}</div>
                                     </div>
@@ -176,7 +164,6 @@ function App() {
                         <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
                     )}
                 </div>
-                {/* </Suspense> */}
             </div>
         </BrowserRouter>
     )
