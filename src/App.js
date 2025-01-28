@@ -14,6 +14,8 @@ import './questions.scss'
 import './options.scss'
 import './form.scss'
 
+import Logo from './images/Logo.svg'
+
 import emal from './images/materials/emal.JPG'
 import beton from './images/materials/beton.JPG'
 import massiv from './images/materials/massiv.JPG'
@@ -116,6 +118,18 @@ function App() {
                                 <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
                             ))}
                         </div>
+
+                        {/* <div className='progress-bar__info'>
+                            <p className="progress-bar__number">Шаг {currentStep + 1}</p>
+
+                            <div className="progress-bar__quiz-steps">
+                                {quizSteps.map((_, index) => (
+                                    <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
+                                ))}
+                            </div>
+                        </div>
+
+                        <img src={Logo} alt="Logo" width={150} /> */}
                     </div>
 
                     {currentStep < quizSteps.length ? (
@@ -145,8 +159,6 @@ function App() {
                                     </div>
                                 ))}
                             </div>
-
-                            
 
                             <div onClick={handleNextClick} className={`next-button ${!answers[currentStep] ? 'next-button--inactive' : ''}`}>
                                 Дальше
