@@ -15,7 +15,7 @@ export default function handleCapi(nameState, phoneState, fbc, browserName) {
 
     // console.log(fbp)
 
-    console.log(check)
+    console.log(CAPIToken)
 
     // CAPI META
     const hashedName = CryptoJS.SHA256(nameState.toLowerCase().trim()).toString()
