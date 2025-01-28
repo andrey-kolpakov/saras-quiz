@@ -5,7 +5,6 @@ const CAPIToken = process.env.REACT_APP_CAPI_TOKEN
 const pixelID = process.env.REACT_APP_PIXEL_ID
 const APIVersion = process.env.REACT_APP_API_VERSION
 
-const check = process.env.REACT_APP_CHECK
 
 export default function handleCapi(nameState, phoneState, fbc, browserName) {
     const fbp = document.cookie
@@ -15,7 +14,7 @@ export default function handleCapi(nameState, phoneState, fbc, browserName) {
 
     // console.log(fbp)
 
-    console.log(CAPIToken)
+    // console.log(CAPIToken)
 
     // CAPI META
     const hashedName = CryptoJS.SHA256(nameState.toLowerCase().trim()).toString()
