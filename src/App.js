@@ -83,11 +83,7 @@ const quizSteps = [
 function App() {
     const [currentStep, setCurrentStep] = useState(0)
     const [answers, setAnswers] = useState([])
-    // const [userAgent, setUserAgent] = useState('')
-    // useEffect(() => {
-    //     setUserAgent(navigator.userAgent)
-    // }, [])
-    // // console.log(userAgent)
+    
 
     const handleOptionClick = (option) => {
         const updatedAnswers = [...answers]
@@ -102,13 +98,17 @@ function App() {
         setCurrentStep(currentStep + 1)
     }
 
-    // const customURL = window.location.href
-    // const params = new URLSearchParams(customURL.split('?')[1])
-    // const fbclid = params.get('fbclid')
+    const [userAgent, setUserAgent] = useState('')
+    useEffect(() => {
+        setUserAgent(navigator.userAgent)
+    }, [])
+    // console.log(userAgent)
 
-    // console.log('123')
+    const customURL = window.location.href
+    const params = new URLSearchParams(customURL.split('?')[1])
+    const fbclid = params.get('fbclid')
 
-    // const fbAds = params.get('fb')
+    const fbAds = params.get('fb')
 
     return (
         <BrowserRouter>
