@@ -106,6 +106,8 @@ function App() {
     const params = new URLSearchParams(customURL.split('?')[1])
     const fbclid = params.get('fbclid')
 
+    console.log('123')
+
     return (
         <BrowserRouter>
             <div className="App">
