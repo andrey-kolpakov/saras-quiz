@@ -106,6 +106,8 @@ function App() {
     const params = new URLSearchParams(customURL.split('?')[1])
     const fbclid = params.get('fbclid')
 
+    // const fbAds = params.get('fb')
+
     return (
         <BrowserRouter>
             <div className="App">
@@ -168,7 +170,7 @@ function App() {
                             </div>
                         </>
                     ) : (
-                        <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
+                        <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid ? fbclid: ''} browserName={userAgent} />
                     )}
                 </div>
             </div>

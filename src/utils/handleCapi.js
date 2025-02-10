@@ -5,12 +5,13 @@ const CAPIToken = process.env.REACT_APP_CAPI_TOKEN
 const pixelID = process.env.REACT_APP_PIXEL_ID
 const APIVersion = process.env.REACT_APP_API_VERSION
 
-
 export default function handleCapi(nameState, phoneState, fbc, browserName) {
     const fbp = document.cookie
         .split('; ')
         .find((row) => row.startsWith('_fbp'))
         ?.split('=')[1]
+
+    // console.log(nameState, phoneState, fbc, browserName)
 
     // CAPI META
     const hashedName = CryptoJS.SHA256(nameState.toLowerCase().trim()).toString()
@@ -27,7 +28,7 @@ export default function handleCapi(nameState, phoneState, fbc, browserName) {
                     ph: hashedPhone,
 
                     fbc: `fb.1.${Date.now()}.${fbc}`,
-                    fbp: fbp,
+                    fbp: fbp ? fbp : null,
 
                     client_user_agent: browserName,
                 },
@@ -36,7 +37,8 @@ export default function handleCapi(nameState, phoneState, fbc, browserName) {
     }
 
     // console.log(data)
-    // const CAPIURL = `https://graph.facebook.com/v20.0/${pixelID}/events?access_token=${CAPIToken}`
     // console.log(CAPIURL)
+
+    // const CAPIURL = `https://graph.facebook.com/v20.0/${pixelID}/events?access_token=${CAPIToken}`
     // axios.post(CAPIURL, data).then((response) => console.log(response)).catch((error) => console.error(error))
 }
