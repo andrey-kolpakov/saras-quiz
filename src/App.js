@@ -83,11 +83,11 @@ const quizSteps = [
 function App() {
     const [currentStep, setCurrentStep] = useState(0)
     const [answers, setAnswers] = useState([])
-    const [userAgent, setUserAgent] = useState('')
-    useEffect(() => {
-        setUserAgent(navigator.userAgent)
-    }, [])
-    // console.log(userAgent)
+    // const [userAgent, setUserAgent] = useState('')
+    // useEffect(() => {
+    //     setUserAgent(navigator.userAgent)
+    // }, [])
+    // // console.log(userAgent)
 
     const handleOptionClick = (option) => {
         const updatedAnswers = [...answers]
@@ -102,9 +102,11 @@ function App() {
         setCurrentStep(currentStep + 1)
     }
 
-    const customURL = window.location.href
-    const params = new URLSearchParams(customURL.split('?')[1])
-    const fbclid = params.get('fbclid')
+    // const customURL = window.location.href
+    // const params = new URLSearchParams(customURL.split('?')[1])
+    // const fbclid = params.get('fbclid')
+
+    // console.log('123')
 
     // const fbAds = params.get('fb')
 
@@ -170,7 +172,12 @@ function App() {
                             </div>
                         </>
                     ) : (
+<<<<<<< HEAD
                         <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid ? fbclid: ''} browserName={userAgent} />
+=======
+                        <div></div>
+                        // <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
+>>>>>>> b1d4ecc7712d6c0b6cfbabeca569d8e5af6bdb2e
                     )}
                 </div>
             </div>
