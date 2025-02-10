@@ -172,12 +172,8 @@ function App() {
                             </div>
                         </>
                     ) : (
-<<<<<<< HEAD
-                        <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid ? fbclid: ''} browserName={userAgent} />
-=======
                         <div></div>
-                        // <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid} browserName={userAgent} />
->>>>>>> b1d4ecc7712d6c0b6cfbabeca569d8e5af6bdb2e
+                        // <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid ? fbclid: ''} browserName={userAgent} />
                     )}
                 </div>
             </div>
