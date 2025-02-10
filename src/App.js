@@ -149,9 +149,8 @@ function App() {
                             ) : (
                                 <div style={{ width: 600, height: 300, backgroundColor: 'red' }}>123</div>
                             )} */}
-                            
+
                             <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" width="600" height="300" />
-                            
 
                             <div className="options-container">
                                 {quizSteps[currentStep].options.map((option, index) => (
@@ -172,8 +171,15 @@ function App() {
                             </div>
                         </>
                     ) : (
-                        <div></div>
-                        // <Form answers={answers} setCurrentStep={setCurrentStep} setAnswers={setAnswers} fbc={fbclid ? fbclid: ''} browserName={userAgent} />
+                        <>
+                            <Form
+                                answers={answers}
+                                setCurrentStep={setCurrentStep}
+                                setAnswers={setAnswers}
+                                fbc={fbclid ? fbclid : ''}
+                                browserName={userAgent}
+                            />
+                        </>
                     )}
                 </div>
             </div>
