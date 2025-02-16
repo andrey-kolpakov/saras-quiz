@@ -1,12 +1,9 @@
-import React, { useState, useEffect, Suspense } from 'react'
-import { useLocation } from 'react-router-dom'
-// import { Link } from 'react-router-dom'
-// import { Link } from 'react-router'
-import { Link } from 'react-router-dom'
+import React, {useState, useEffect, Suspense} from 'react'
+import {useLocation} from 'react-router-dom'
 
 import Form from './components/Form'
 
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 import './App.scss'
 import './progressbar.scss'
@@ -14,76 +11,18 @@ import './questions.scss'
 import './options.scss'
 import './form.scss'
 
-import Logo from './images/Logo.svg'
+import {quizSteps} from './data/quizSteps'
 
-import emal from './images/materials/emal.JPG'
-import beton from './images/materials/beton.JPG'
-import massiv from './images/materials/massiv.JPG'
-import neznayu from './images/materials/ne-znayu.JPG'
-import plastic from './images/materials/plastic.JPG'
-import shpon from './images/materials/shpon.JPG'
+import Logo from './images/Logo.svg'
 
 import CookieConsent from './components/CookieConsent'
 
-import { store } from './redux/store'
+import {store} from './redux/store'
 
-const quizSteps = [
-    {
-        question: 'В каком стиле вы хотите кухню?',
-        options: [
-            { text: 'Классика', image: 'https://fakeimg.pl/150?text=Классика' },
-            { text: 'Модерн', image: 'https://fakeimg.pl/150?text=Модерн' },
-            { text: 'Минимализм', image: 'https://fakeimg.pl/150?text=Минимализм' },
-        ],
-        image: 'https://fakeimg.pl/600x300?text=Стиль+Кухни',
-    },
-    {
-        question: 'В каком цвете вы бы хотели кухню?',
-        options: [
-            { text: 'Темные цвета', image: 'https://fakeimg.pl/150?text=Темные+цвета' },
-            { text: 'Светлые цвета', image: 'https://fakeimg.pl/150?text=Светлые+цвета' },
-            { text: 'Цветная', image: 'https://fakeimg.pl/150?text=Цветная' },
-        ],
-        image: 'https://fakeimg.pl/600x300?text=Цвет+Кухни',
-    },
-    {
-        question: 'Какой материал вам нравится?',
-        options: [
-            { text: 'Эмаль', image: emal },
-            { text: 'Шпон', image: shpon },
-            { text: 'Массив', image: massiv },
-            { text: 'Пластик', image: plastic },
-            { text: 'Бетон', image: beton },
-            { text: 'Ещё не знаю', image: neznayu },
-        ],
-        image: 'https://fakeimg.pl/600x300?text=Материал+Кухни',
-    },
-    {
-        question: 'Как срочно вам нужна новая кухня?',
-        options: [
-            { text: 'Через 1 месяц', image: 'https://fakeimg.pl/150?text=1+месяц' },
-            { text: 'Через 2 месяца', image: 'https://fakeimg.pl/150?text=2+месяца' },
-            { text: 'Через 3 месяца', image: 'https://fakeimg.pl/150?text=3+месяца' },
-            { text: 'Через 6 месяцев', image: 'https://fakeimg.pl/150?text=6+месяцев' },
-        ],
-        image: 'https://fakeimg.pl/600x300?text=Срочность+Кухни',
-    },
-    {
-        question: 'Какой бюджет вы планируете на кухню?',
-        options: [
-            { text: 'Стандарт от 50 000 до 150 000 руб.', image: 'https://fakeimg.pl/150?text=Стандарт' },
-            { text: 'Престиж от 150 000 до 200 000 руб.', image: 'https://fakeimg.pl/150?text=Престиж' },
-            { text: 'Премиум от 200 000 до 350 000 руб.', image: 'https://fakeimg.pl/150?text=Премиум' },
-            { text: 'Максимальный свыше 350 000 руб.', image: 'https://fakeimg.pl/150?text=Максимальный' },
-        ],
-        image: 'https://fakeimg.pl/600x300?text=Бюджет+Кухни',
-    },
-]
 
 function App() {
     const [currentStep, setCurrentStep] = useState(0)
     const [answers, setAnswers] = useState([])
-    
 
     const handleOptionClick = (option) => {
         const updatedAnswers = [...answers]
@@ -107,7 +46,6 @@ function App() {
     const customURL = window.location.href
     const params = new URLSearchParams(customURL.split('?')[1])
     const fbclid = params.get('fbclid')
-
     const fbAds = params.get('fb')
 
     return (
@@ -119,7 +57,8 @@ function App() {
 
                         <div className="progress-bar__quiz-steps">
                             {quizSteps.map((_, index) => (
-                                <div key={index} className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
+                                <div key={index}
+                                     className={`progress-circle ${index <= currentStep ? 'progress-circle--active' : ''}`}></div>
                             ))}
                         </div>
                     </div>
@@ -138,35 +77,41 @@ function App() {
                                 )}
                             </div>
 
-                            {/* {!quizSteps[currentStep].image ? (
-                                <div className="question-image" style={{ width: 600, height: 300 }}></div>
-                            ) : (
-                                <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" loading="eager" width="600" height="300" />
-                            )} */}
-
-                            {/* {quizSteps[currentStep].image ? (
-                                <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" width="600" height="300" />
-                            ) : (
-                                <div style={{ width: 600, height: 300, backgroundColor: 'red' }}>123</div>
-                            )} */}
-
-                            <img src={quizSteps[currentStep].image} alt="Вопрос" className="question-image" width="600" height="300" />
 
                             <div className="options-container">
-                                {quizSteps[currentStep].options.map((option, index) => (
-                                    <div
-                                        key={index}
-                                        className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
-                                        onClick={() => handleOptionClick(option)}
-                                    >
-                                        <img src={option.image} alt={option.text} className="option-image" />
+                                {quizSteps[currentStep].options.map((option, index) => {
 
-                                        <div className="option-text">{option.text}</div>
-                                    </div>
-                                ))}
+                                    if (quizSteps[currentStep].type === 'text') {
+                                        // console.log('123')
+                                        return (
+                                            <div
+                                                key={index}
+                                                className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
+                                                onClick={() => handleOptionClick(option)}
+                                            >
+                                                <div className="option-text">{option.text}</div>
+                                            </div>
+                                        )
+                                    }
+
+                                    return (
+
+                                        <div
+                                            key={index}
+                                            className={`option-button ${answers[currentStep] === option.text ? 'option-button--active' : ''}`}
+                                            onClick={() => handleOptionClick(option)}
+                                        >
+
+
+                                            <img src={option.image} alt={option.text} className="option-image"/>
+
+                                            <div className="option-text">{option.text}</div>
+                                        </div>)
+                                })}
                             </div>
 
-                            <div onClick={handleNextClick} className={`next-button ${!answers[currentStep] ? 'next-button--inactive' : ''}`}>
+                            <div onClick={handleNextClick}
+                                 className={`next-button ${!answers[currentStep] ? 'next-button--inactive' : ''}`}>
                                 Дальше
                             </div>
                         </>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-import './CookieConsent.scss';
+import './styles/CookieConsent.scss';
 
 const CookieConsent = () => {
     const [isConsentGiven, setIsConsentGiven] = useState(false);
@@ -29,6 +29,9 @@ const CookieConsent = () => {
             <button className='cookie-button' onClick={handleAccept}>
                 Согласен
             </button>
+
+
+
         </div>
     );
 };

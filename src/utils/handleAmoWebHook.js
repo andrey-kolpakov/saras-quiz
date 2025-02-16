@@ -7,7 +7,7 @@ export default function handleAmoWebhook(name, phone, text) {
         comments: text,
     }
 
-    // console.log(payload)
+    console.log(payload)
 
     // axios
     //     .post('https://saras-amo.netlify.app/.netlify/functions/check', payload, {

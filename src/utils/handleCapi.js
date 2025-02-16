@@ -6,12 +6,19 @@ const pixelID = process.env.REACT_APP_PIXEL_ID
 const APIVersion = process.env.REACT_APP_API_VERSION
 
 export default function handleCapi(nameState, phoneState, fbc, browserName) {
-    const fbp = document.cookie
+    let fbp = document.cookie
         .split('; ')
         .find((row) => row.startsWith('_fbp'))
         ?.split('=')[1]
 
     // console.log(nameState, phoneState, fbc, browserName)
+
+    // if (fbc === '') {
+    //     fbc = null
+    // }
+    // if (fbp === '') {
+    //     fbp = null
+    // }
 
     // CAPI META
     const hashedName = CryptoJS.SHA256(nameState.toLowerCase().trim()).toString()
