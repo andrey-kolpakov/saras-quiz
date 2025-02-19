@@ -43,9 +43,9 @@ export default function handleCapi(nameState, phoneState, fbc, browserName) {
         ],
     }
 
-    // console.log(data)
+    console.log(data)
     // console.log(CAPIURL)
 
-    const CAPIURL = `https://graph.facebook.com/v20.0/${pixelID}/events?access_token=${CAPIToken}`
-    axios.post(CAPIURL, data).then((response) => console.log(response)).catch((error) => console.error(error))
+    // const CAPIURL = `https://graph.facebook.com/v20.0/${pixelID}/events?access_token=${CAPIToken}`
+    // axios.post(CAPIURL, data).then((response) => console.log(response)).catch((error) => console.error(error))
 }
