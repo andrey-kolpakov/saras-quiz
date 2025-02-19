@@ -46,6 +46,11 @@ function Form({answers, fbc, browserName}) {
         setName('')
         setError('')
         setIsSubmitted(true)
+
+        // Редирект на страницу благодарности
+        setTimeout(() => {
+            window.location.href = "/thank-you";
+        }, 1500); // 1.5 сек задержки перед редиректом
     }
 
     return (
