@@ -1,9 +1,6 @@
-import React, {useState, useEffect, Suspense} from 'react'
-import {useLocation} from 'react-router-dom'
+import React, {useState, useEffect} from 'react'
 
 import Form from './components/Form'
-
-import {BrowserRouter} from 'react-router-dom'
 
 import './App.scss'
 import './progressbar.scss'
@@ -12,13 +9,6 @@ import './options.scss'
 import './form.scss'
 
 import {quizSteps} from './data/quizSteps'
-
-import Logo from './images/Logo.svg'
-
-import CookieConsent from './components/CookieConsent'
-
-import {store} from './redux/store'
-
 
 function App() {
     const [currentStep, setCurrentStep] = useState(0)
@@ -46,7 +36,7 @@ function App() {
     const customURL = window.location.href
     const params = new URLSearchParams(customURL.split('?')[1])
     const fbclid = params.get('fbclid')
-    const fbAds = params.get('fb')
+    // const fbAds = params.get('fb')
 
     return (
 
